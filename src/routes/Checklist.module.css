@@ -1,0 +1,94 @@
+.head {
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.sub {
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.progress {
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--accent-wash);
+  color: var(--accent);
+  border-radius: 999px;
+}
+
+.button {
+  min-height: var(--tap);
+  padding: 0.4rem 0.9rem;
+  font-weight: 700;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.button:disabled {
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.storageNote {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.diffBox {
+  border: 2px solid var(--walk-away);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.8rem 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.diffTitle {
+  font-size: 1rem;
+  color: var(--walk-away);
+  margin-bottom: 0.3rem;
+}
+
+.diffText {
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.backLink {
+  margin-top: 1.5rem;
+}
+
+/* One page, no nav, black on white. §4.4 */
+@media print {
+  .sheet {
+    max-width: none;
+    padding: 0;
+    font-size: 10pt;
+  }
+
+  .title { font-size: 14pt; }
+  .sub { color: #000; }
+  .actions, .storageNote, .backLink { display: none; }
+  .diffBox { border-color: #000; break-inside: avoid; }
+  .diffTitle { color: #000; }
+
+  @page {
+    margin: 12mm;
+  }
+}

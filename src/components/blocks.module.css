@@ -1,0 +1,426 @@
+/* Shared block primitives for the model-year detail view (§4.3) and the overview pages. */
+
+.section {
+  margin: 0 0 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+
+/* --- Header --- */
+
+.header {
+  margin: 0.25rem 0 1.25rem;
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-size: 1.75rem;
+  margin: 0.1rem 0 0.6rem;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.chipAccent {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent);
+}
+
+.chipTrack {
+  border-color: var(--walk-away);
+  background: var(--walk-away-wash);
+  color: var(--walk-away);
+}
+
+/* --- What changed: the single most useful block on the site, §4.3.2 --- */
+
+.whatChanged {
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.whatChangedTitle {
+  font-size: 1.0625rem;
+  margin-bottom: 0.5rem;
+}
+
+.whatChangedList {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.whatChangedList li + li {
+  margin-top: 0.4rem;
+}
+
+.buyLine {
+  margin: 0.75rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.stars {
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* --- Spec table --- */
+
+.specGroup {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.specGroupTitle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  background: var(--accent-wash);
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  align-items: baseline;
+}
+
+.specRow + .specRow {
+  border-top: 1px solid var(--line);
+}
+
+.specKey {
+  color: var(--ink-faint);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.specValue {
+  font-weight: 600;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The override marker: seeing *that* a spec is trim-specific is the point. §4.3.3 */
+.marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 0.35rem;
+  padding: 0 0.3rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  line-height: 1;
+  vertical-align: 1px;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.markerNote {
+  grid-column: 1 / -1;
+  margin-top: 0.35rem;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--accent-wash);
+  border-radius: 4px;
+}
+
+.specNote {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8438rem;
+  color: var(--ink-soft);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+/* --- Differential callout: its own bordered block, not a table row. §4.3.4 --- */
+
+.diff {
+  border: 2px solid var(--walk-away);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.diffTitle {
+  font-size: 1.0625rem;
+  color: var(--walk-away);
+  margin-bottom: 0.5rem;
+}
+
+.diffGrid {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9375rem;
+  margin-bottom: 0.65rem;
+}
+
+.diffLabel {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.diffVerify {
+  padding: 0.6rem 0.7rem;
+  background: var(--walk-away-wash);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.diffVerify strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--walk-away);
+}
+
+/* --- Cards (special editions) --- */
+
+.cards {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.7rem 0.85rem;
+}
+
+.cardHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+}
+
+.cardMeta {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+}
+
+.cardList {
+  font-size: 0.875rem;
+  margin: 0;
+  padding-left: 1.05rem;
+  color: var(--ink-soft);
+}
+
+.footnote {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.collectible {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.collectibleHigh { background: var(--walk-away-wash); color: var(--walk-away); }
+.collectibleMedium { background: var(--negotiate-wash); color: var(--negotiate); }
+.collectibleLow { background: var(--note-wash); color: var(--note-c); }
+
+.chipOn {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* Small enough to caption the card rather than dominate it. */
+.seArt {
+  max-width: 13rem;
+  margin: 0.1rem 0 0.2rem;
+}
+
+/* --- Model-year hero --- */
+
+.hero {
+  margin: 0.25rem 0 0.5rem;
+  max-width: 24rem;
+}
+
+.heroCaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.heroHint {
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--ink-faint);
+}
+
+/* --- Colors --- */
+
+.colorChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.colorChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  /* Chips are tap targets now, so pad to the 44px rhythm rather than the old 0.3rem. */
+  padding: 0.45rem 0.7rem;
+  min-height: 2.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  text-align: left;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.colorChipRare {
+  border-color: var(--negotiate);
+  background: var(--negotiate-wash);
+}
+
+.colorChipOn {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/*
+ * An approximate colour, so it is drawn as a small chip with a hard border rather than
+ * anything that looks like a calibrated sample.
+ */
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  flex: none;
+}
+
+.rareStar {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--negotiate);
+}
+
+.colorNote {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* --- Prev/next year navigation, §4.3.8 --- */
+
+.yearNav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.yearNavLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.yearNavSpacer {
+  flex: 1;
+}
+
+@media print {
+  .yearNav { display: none; }
+}

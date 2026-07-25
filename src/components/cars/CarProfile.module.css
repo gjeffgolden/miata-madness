@@ -1,0 +1,97 @@
+/*
+ * The profile is tinted through --paint. Callers set it inline; the fallback chain lets a
+ * profile dropped inside a generation card pick up that card's accent for free.
+ */
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.body {
+  fill: var(--paint, var(--card-accent, var(--accent)));
+  /*
+   * The outline is not decoration. Crystal White and Marble White are real Miata colours and
+   * the car has to stay visible against --surface (#fff) when one is selected.
+   */
+  stroke: var(--line-strong);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.shade {
+  fill: #000;
+  opacity: 0.14;
+}
+
+.highlight {
+  fill: #fff;
+  opacity: 0.2;
+}
+
+.top {
+  fill: #24272c;
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.glass {
+  fill: #93a6b5;
+  stroke: #454b53;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+/*
+ * Neutral glass rather than red and amber. A red tail lens disappears on Classic Red and
+ * these have to work across every colour in the dataset.
+ */
+.lamp {
+  fill: #dfe4e9;
+  stroke: #4a5058;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.panelLine {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.1;
+  opacity: 0.28;
+  stroke-linecap: round;
+}
+
+.tire {
+  fill: #1b1d21;
+}
+
+.rim {
+  fill: #cfd3d8;
+  stroke: #6c727a;
+  stroke-width: 1;
+}
+
+.spoke {
+  stroke: #6c727a;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.hub {
+  fill: #6c727a;
+}
+
+.shadow {
+  fill: #000;
+  opacity: 0.1;
+}
+
+/* The checklist prints; a filled car silhouette wastes toner and says nothing extra. */
+@media print {
+  .svg {
+    display: none;
+  }
+}

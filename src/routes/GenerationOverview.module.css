@@ -1,0 +1,96 @@
+.tagline {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.75rem;
+}
+
+.spotArt {
+  max-width: 22rem;
+  margin: 0 auto 0.4rem;
+}
+
+.years {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.yearRow {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 0.6rem 0.75rem;
+  min-height: var(--tap);
+}
+
+.yearRow:hover {
+  border-color: var(--accent);
+}
+
+.yearNo {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.yearBody {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.yearHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sub {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem;
+  color: var(--ink-faint);
+}
+
+.stars {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.pick {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+}
+
+.changed {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.why {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}

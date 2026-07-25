@@ -1,0 +1,127 @@
+/*
+ * Design direction, §4.6: mobile-first at 375px, high contrast for outdoor reading,
+ * generation accents derived from real Miata paint colors, no motion.
+ * Body text stays near-black on near-white everywhere.
+ */
+
+:root {
+  --ink: #14161a;
+  --ink-soft: #3d434c;
+  --ink-faint: #5c636e;
+  --paper: #fbfaf8;
+  --surface: #ffffff;
+  --line: #d3d0cb;
+  --line-strong: #a9a49c;
+
+  /* Generation accents. Overridden per-view by [data-gen]. */
+  --accent: #14161a;
+  --accent-wash: #f1efec;
+
+  --walk-away: #9a1b12;
+  --walk-away-wash: #fdeceb;
+  --negotiate: #8a5300;
+  --negotiate-wash: #fdf3e2;
+  --note-c: #3a5570;
+  --note-wash: #eef3f8;
+
+  --radius: 6px;
+  --tap: 44px;
+
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+[data-gen='NA'] { --accent: #b4241c; --accent-wash: #fbeceb; }
+[data-gen='NB'] { --accent: #1f4e79; --accent-wash: #ebf1f7; }
+[data-gen='NC'] { --accent: #4b5560; --accent-wash: #eef0f2; }
+[data-gen='ND'] { --accent: #c1521d; --accent-wash: #fdf0e8; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+ul, ol {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Visible keyboard focus everywhere, §4.6. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* No hero animation, no scroll effects. Honor the OS setting anyway. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.page {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+@media print {
+  body { background: #fff; }
+}

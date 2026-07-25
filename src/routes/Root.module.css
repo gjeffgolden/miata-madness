@@ -1,0 +1,51 @@
+.masthead {
+  background: var(--ink);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.mastheadInner {
+  max-width: 46rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+}
+
+.wordmark {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  text-decoration: underline;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  font-size: 0.8125rem;
+}
+
+.nav a {
+  color: #e8e6e2;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.masthead :focus-visible {
+  outline-color: #fff;
+}
+
+@media print {
+  .masthead { display: none; }
+}
