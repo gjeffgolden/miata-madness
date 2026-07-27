@@ -8,7 +8,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { GENERATIONS } from './index';
-import { resolveSpec } from '../lib/resolveSpec';
+import { bestYearForTrim, resolveSpec } from '../lib/resolveSpec';
 import { PROFILE_ART, bodyArtKey } from '../components/cars/profileArt';
 import type { Figure, Generation } from '../types';
 
@@ -277,6 +277,26 @@ describe('cross-generation', () => {
     // The R Package brings its own Torsen, overriding the year's open-standard differential.
     expect(spec.drivetrain.differential.standard).toBe('Torsen T-1 limited-slip');
     expect(spec.overrides['drivetrain.differential'].source).toBe('trim');
+  });
+
+  /**
+   * The landing page builds its HPDE list from trackRelevant and links each entry through
+   * bestYearForTrim(). If that ever returns a year the trim was not sold in, resolveSpec()
+   * quietly falls back to the first available trim and the link lands on the wrong car —
+   * with nothing on screen to say so. This is the guard for that.
+   */
+  it('every track-relevant trim resolves in its own best year', () => {
+    for (const gen of GENERATIONS) {
+      for (const trim of gen.trims.filter((t) => t.trackRelevant)) {
+        const year = bestYearForTrim(gen, trim);
+        expect(trim.years, `${gen.id} "${trim.id}" best year ${year}`).toContain(year);
+        const spec = resolveSpec(gen.id, year, trim.id);
+        expect(
+          spec?.trim?.id,
+          `${gen.id}/${year}/${trim.id} fell back to another trim`,
+        ).toBe(trim.id);
+      }
+    }
   });
 
   it('falls back to the first available trim when the requested trim did not exist', () => {

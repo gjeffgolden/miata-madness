@@ -77,6 +77,22 @@ export function bestYear(gen: Generation): number {
 }
 
 /**
+ * The same rule as bestYear(), narrowed to the years a given trim was actually sold —
+ * so a link to "R Package" lands on the best R Package year, not the best NA year.
+ */
+export function bestYearForTrim(gen: Generation, trim: Trim): number {
+  return trim.years.reduce((best, year) => {
+    const current = findModelYear(gen, best);
+    const candidate = findModelYear(gen, year);
+    if (!candidate) return best;
+    if (!current) return year;
+    if (candidate.buyRating > current.buyRating) return year;
+    if (candidate.buyRating === current.buyRating && year > current.year) return year;
+    return best;
+  }, trim.years[0]);
+}
+
+/**
  * Resolve generation defaults → model-year overrides → trim overrides into one spec.
  * This is the only place merge logic lives; components consume the result directly.
  *

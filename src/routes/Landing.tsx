@@ -1,9 +1,26 @@
 import { Link } from "react-router-dom";
 import { GENERATIONS, RUMORS } from "../data";
-import { bestYear } from "../lib/resolveSpec";
+import { bestYear, bestYearForTrim } from "../lib/resolveSpec";
 import { pathFor } from "../lib/selection";
 import { CarProfile } from "../components/cars/CarProfile";
 import s from "./Landing.module.css";
+
+/**
+ * The HPDE quick reference. trackRelevant is set per trim in src/data/, so this stays
+ * correct as the dataset changes rather than being a second hand-maintained list.
+ */
+const TRACK_PICKS = GENERATIONS.map((g) => ({
+  gen: g,
+  trims: g.trims.filter((t) => t.trackRelevant),
+})).filter((row) => row.trims.length > 0);
+
+/** '1994–1997', or '2016–present' for a trim still in production at the end of the data. */
+function trimYears(gen: (typeof GENERATIONS)[number], years: number[]): string {
+  const first = years[0];
+  const last = years[years.length - 1];
+  if (first === last) return String(first);
+  return `${first}–${gen.id === "ND" && last === gen.years[1] ? "present" : last}`;
+}
 
 /** §9 — buying strategy sits above the generation picker. */
 const INTENTS = [
@@ -54,6 +71,42 @@ export function Landing() {
                 {i.goal} → <Link to={i.to}>{i.gen}</Link>
               </span>
               <span className={s.intentPick}>{i.pick}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className={s.track} aria-labelledby="track">
+        <h2 className={s.strategyTitle} id="track">
+          Track &amp; HPDE picks
+        </h2>
+        <p className={s.trackLede}>
+          Every trim the guide flags as track-relevant. Each link opens that
+          trim's strongest year.
+        </p>
+        <ul className={s.trackList}>
+          {TRACK_PICKS.map(({ gen, trims }) => (
+            <li key={gen.id}>
+              <span className={s.trackGen}>{gen.name}</span>
+              <span className={s.trackTrims}>
+                {trims.map((t) => (
+                  <Link
+                    key={t.id}
+                    className={s.trackTrim}
+                    to={pathFor({
+                      gen: gen.id,
+                      year: bestYearForTrim(gen, t),
+                      trim: t.id,
+                    })}
+                  >
+                    {t.name}
+                    <span className={s.trackTrimYears}>
+                      {trimYears(gen, t.years)}
+                    </span>
+                  </Link>
+                ))}
+              </span>
+              <p className={s.trackNote}>{gen.hpdeNotes}</p>
             </li>
           ))}
         </ul>
