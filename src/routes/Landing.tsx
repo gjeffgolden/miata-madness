@@ -181,10 +181,6 @@ export function Landing() {
           <strong>{r.title}.</strong> {r.detail} {r.note}
         </p>
       ))}
-
-      <p>
-        <Link to="/about">About the data, and where it's uncertain →</Link>
-      </p>
     </div>
   );
 }
