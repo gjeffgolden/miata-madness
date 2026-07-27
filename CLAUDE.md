@@ -67,11 +67,16 @@ current trim if it existed, otherwise falls back to index 0 and returns a user-f
 | `/:gen`, `/:gen/:year`, `/:gen/:year/:trim` | Overview / model-year detail |
 | `/compare?a=na/1994/r-package&b=nb/2001/ls` | Two resolved specs side by side |
 | `/checklist/:gen` | Standalone printable inspection checklist |
-| `/about` | Where the data is uncertain |
 
-Static segments outrank `:gen` in React Router's ranking, so `/compare` and `/about` are not swallowed
-by the dynamic route. Deep links need an SPA fallback: `public/_redirects` for Netlify, the
-`postbuild` 404.html copy for GitHub Pages.
+Static segments outrank `:gen` in React Router's ranking, so `/compare` and `/checklist/:gen` are not
+swallowed by the dynamic route.
+
+There is deliberately **no `/about` route.** The data caveats it used to render are internal now, in
+`docs/data-provenance.md` — read that before editing `src/data/`: it records the sources behind the
+color and trim lists, the conflicts between them, and the naming rules used to reconcile them.
+
+Deep links need an SPA fallback: `public/_redirects` for Netlify and Cloudflare Pages, the `postbuild`
+404.html copy for GitHub Pages. `.nvmrc` pins Node 22 for CI — Vite 8 requires >=20.19.
 
 ## Conventions that are load-bearing
 

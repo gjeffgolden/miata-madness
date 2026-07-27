@@ -27,7 +27,8 @@ Every selection is a URL — these get texted to sellers.
 | `/na/1994/r-package` | 1994 R Package |
 | `/compare?a=na/1994/r-package&b=nb/2001/ls` | Two resolved specs side by side |
 | `/checklist/na` | Standalone inspection checklist, printable |
-| `/about` | Where the data is uncertain |
+
+Data caveats and source conflicts are internal, in `docs/data-provenance.md`.
 
 ## Structure
 

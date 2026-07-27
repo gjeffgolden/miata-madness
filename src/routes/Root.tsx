@@ -51,7 +51,6 @@ export function Root() {
               <Link to={`/checklist/${generation.id.toLowerCase()}`}>{generation.name} checklist</Link>
             )}
             <Link to="/compare">Compare</Link>
-            <Link to="/about">About the data</Link>
           </nav>
         </div>
       </header>

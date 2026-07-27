@@ -71,8 +71,8 @@ export function ColorChips({
       )}
       <p className={s.colorNote}>
         ★ marks a one-year-only color. Swatches are approximations for recognising a color by name —
-        they are not paint matches, and paint codes are deliberately not recorded. See{' '}
-        <a href="/about">About the data</a>. This palette lists documented colors and is not exhaustive.
+        they are not paint matches, and paint codes are deliberately not recorded. This palette lists
+        documented colors and is not exhaustive.
       </p>
     </section>
   );
