@@ -25,8 +25,8 @@ export default defineConfig({
         short_name: 'MX-5 Guide',
         description:
           "What a given Miata year and trim should have, what changed, what to inspect, and what it's worth.",
-        theme_color: '#14161a',
-        background_color: '#fbfaf8',
+        theme_color: '#a3311f',
+        background_color: '#f3eee4',
         display: 'standalone',
         start_url: '/',
         scope: '/',

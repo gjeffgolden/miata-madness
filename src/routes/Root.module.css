@@ -1,7 +1,13 @@
+/*
+ * The masthead is brochure cover, not app chrome: paper stock with a heavy rule under it
+ * rather than a dark bar. That rule is the first thing on the page and sets the device the
+ * rest of the guide repeats.
+ */
 .masthead {
-  background: var(--ink);
-  color: #fff;
-  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: var(--on-fill);
+  padding: 0.7rem 1rem 0.55rem;
+  border-bottom: var(--rule-heavy) solid var(--ink);
 }
 
 .mastheadInner {
@@ -15,10 +21,12 @@
 }
 
 .wordmark {
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9375rem;
-  letter-spacing: -0.01em;
+  color: var(--on-fill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-body);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
   text-decoration: none;
 }
 
@@ -30,20 +38,26 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  font-size: 0.8125rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
 }
 
 .nav a {
-  color: #e8e6e2;
+  color: var(--on-fill);
+  opacity: 0.88;
   text-decoration: none;
 }
 
 .nav a:hover {
+  opacity: 1;
   text-decoration: underline;
 }
 
+/* The band is accent-coloured, so the default accent outline would vanish into it. */
 .masthead :focus-visible {
-  outline-color: #fff;
+  outline-color: var(--on-fill);
 }
 
 @media print {

@@ -1,40 +1,108 @@
 /*
  * Design direction, §4.6: mobile-first at 375px, high contrast for outdoor reading,
  * generation accents derived from real Miata paint colors, no motion.
- * Body text stays near-black on near-white everywhere.
+ *
+ * The visual language is a 1990 Mazda dealer brochure: warm cream stock, warm near-black
+ * ink, deep oxide red, wide letterspaced caps for labels, and hairline rules as the main
+ * structural device. Panels are bounded by rules rather than by rounded corners and
+ * shadows — that is the single thing that keeps this from reading as generic card UI.
  */
 
-:root {
-  --ink: #14161a;
-  --ink-soft: #3d434c;
-  --ink-faint: #5c636e;
-  --paper: #fbfaf8;
-  --surface: #ffffff;
-  --line: #d3d0cb;
-  --line-strong: #a9a49c;
-
-  /* Generation accents. Overridden per-view by [data-gen]. */
-  --accent: #14161a;
-  --accent-wash: #f1efec;
-
-  --walk-away: #9a1b12;
-  --walk-away-wash: #fdeceb;
-  --negotiate: #8a5300;
-  --negotiate-wash: #fdf3e2;
-  --note-c: #3a5570;
-  --note-wash: #eef3f8;
-
-  --radius: 6px;
-  --tap: 44px;
-
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+/*
+ * Jost, a geometric sans in the Futura line — the type Japanese brochures of the era were
+ * set in. Self-hosted rather than CDN-loaded because offline is a hard requirement (§2):
+ * a webfont fetched from gstatic is a webfont the canyon does not have. Vite fingerprints
+ * this file into dist/assets/, where workbox's woff2 glob precaches it.
+ *
+ * One file covers the whole weight range — Google serves Jost as a variable font with a
+ * wght axis of 100–900, so the 400 and 600 URLs are byte-identical. Hence the range in
+ * font-weight below: declaring a single weight would make the browser synthesize the other.
+ */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./fonts/jost-latin-var.woff2') format('woff2');
+  /* Latin subset only. The dataset is US-market and has no cyrillic or latin-ext. */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-[data-gen='NA'] { --accent: #b4241c; --accent-wash: #fbeceb; }
-[data-gen='NB'] { --accent: #1f4e79; --accent-wash: #ebf1f7; }
-[data-gen='NC'] { --accent: #4b5560; --accent-wash: #eef0f2; }
-[data-gen='ND'] { --accent: #c1521d; --accent-wash: #fdf0e8; }
+:root {
+  /* --- Stock and ink. Every neutral is warm; nothing here is a pure grey. --- */
+  --ink: #1c1a16;
+  --ink-soft: #443f36;
+  --ink-faint: #6b6355;
+  --paper: #f3eee4;
+  --surface: #fdfbf6;
+  --line: #cfc6b4;
+  --line-strong: #a89e88;
+
+  /* Text that sits on a filled accent or severity block. */
+  --on-fill: #fdfbf6;
+
+  /* Generation accents. Overridden per-view by [data-gen]. */
+  --accent: #a3311f;
+  --accent-wash: #f0e5da;
+
+  --walk-away: #96231a;
+  --walk-away-wash: #f7e3dd;
+  --negotiate: #8a5a12;
+  --negotiate-wash: #f7ead3;
+  --note-c: #3b5163;
+  --note-wash: #e8edf1;
+
+  /*
+   * Car profile art. These tint the SVG chrome — glass, lamps, tires, rims — which used
+   * to be eleven hardcoded cool greys in CarProfile.module.css. They are warmed to sit on
+   * cream. The painted body is NOT here: it resolves from --paint, which carries real
+   * swatch data from src/data/, and must never be themed.
+   */
+  --art-top: #2a2620;
+  --art-glass: #93a2ab;
+  --art-glass-line: #4a4a46;
+  --art-lamp: #e2ddd2;
+  --art-lamp-line: #4a4a46;
+  --art-tire: #1e1b17;
+  --art-rim: #cdc7bb;
+  --art-chrome: #6e685c;
+
+  /* --- Type --- */
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Display face for headings, labels and figures. Body text stays on the system stack. */
+  --font-display: 'Jost', 'Futura', 'Century Gothic', var(--font);
+
+  --t-display: 1.75rem;
+  --t-h1: 1.375rem;
+  --t-h2: 1.125rem;
+  --t-body: 1rem;
+  --t-small: 0.875rem;
+  --t-label: 0.75rem;
+  --t-micro: 0.6875rem;
+
+  /* The wide-caps treatment on eyebrows and labels is the signature move. */
+  --track-caps: 0.14em;
+  --track-wide: 0.08em;
+  --track-tight: -0.01em;
+
+  /* Rules replace shadows as the structural device. */
+  --rule: 1px;
+  --rule-strong: 2px;
+  --rule-heavy: 3px;
+
+  /* Brochures do not have rounded corners. Kept as tokens so this is one edit to undo. */
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-pill: 0;
+
+  --tap: 44px;
+}
+
+[data-gen='NA'] { --accent: #a82a1e; --accent-wash: #f2e4de; }
+[data-gen='NB'] { --accent: #215072; --accent-wash: #e4ebf0; }
+[data-gen='NC'] { --accent: #535a5e; --accent-wash: #e9e9e6; }
+[data-gen='ND'] { --accent: #bf5420; --accent-wash: #f6e6d8; }
 
 *,
 *::before,
@@ -51,16 +119,17 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font);
-  font-size: 16px;
+  font-size: var(--t-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
   margin: 0;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: var(--track-tight);
 }
 
 p {
@@ -83,11 +152,30 @@ button {
   color: inherit;
 }
 
+/*
+ * The brochure eyebrow: wide-tracked caps over a hairline rule. Used for section titles
+ * and field labels throughout, so it lives here rather than being restated per module.
+ */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Spec figures read as a table: lining, tabular, on the display face. */
+.figure {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
 /* Visible keyboard focus everywhere, §4.6. */
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: var(--rule-heavy) solid var(--accent);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 /* No hero animation, no scroll effects. Honor the OS setting anyway. */
@@ -113,7 +201,7 @@ button {
   left: -9999px;
   top: 0;
   background: var(--ink);
-  color: #fff;
+  color: var(--on-fill);
   padding: 0.6rem 1rem;
   z-index: 100;
 }
@@ -122,6 +210,29 @@ button {
   left: 0;
 }
 
+/*
+ * Print re-points the tokens instead of overriding colors per component. The checklist is
+ * meant to be carried to a viewing, and a warm cream ground is a warm cream ground the
+ * printer will try to reproduce. Repointing here is what let eleven hardcoded #000s come
+ * out of InspectionList, Checklist and this file.
+ */
 @media print {
-  body { background: #fff; }
+  :root {
+    --paper: #fff;
+    --surface: #fff;
+    --ink: #000;
+    --ink-soft: #000;
+    --ink-faint: #333;
+    --line: #999;
+    --line-strong: #000;
+    --accent: #000;
+    --accent-wash: #fff;
+    --walk-away: #000;
+    --walk-away-wash: #fff;
+    --negotiate: #000;
+    --negotiate-wash: #fff;
+    --note-c: #000;
+    --note-wash: #fff;
+    --on-fill: #000;
+  }
 }

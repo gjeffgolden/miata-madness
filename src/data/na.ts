@@ -46,7 +46,7 @@ const trims: Trim[] = [
   {
     id: 'package-c',
     name: 'C Package',
-    years: [1991, 1992, 1993, 1994],
+    years: [1992, 1993, 1994],
     blurb: 'The luxury tier: B Package with leather and, usually, an automatic-friendly spec.',
     includes: ['Everything in B Package', 'Leather seats', 'ABS', 'Tan or black leather interior'],
     trackRelevant: false,
@@ -70,8 +70,8 @@ const trims: Trim[] = [
   {
     id: 'power-steering-package',
     name: 'Power Steering Package',
-    years: [1997],
-    blurb: 'The 1997 entry step: a base car with the steering assist added back.',
+    years: [1996, 1997],
+    blurb: 'The entry step from 1996 on: a base car with the steering assist added back.',
     includes: ['Power steering'],
     trackRelevant: false,
   },
@@ -131,7 +131,7 @@ const trims: Trim[] = [
   {
     id: 'm-edition',
     name: 'M Edition',
-    years: [1994, 1995, 1996],
+    years: [1994, 1995, 1996, 1997],
     blurb: 'The annual dressed-up special: exclusive paint, tan leather, and upgraded wheels.',
     includes: ['Exclusive exterior color', 'Tan leather interior', 'Polished or BBS/Enkei alloy wheels', 'Full equipment'],
     trackRelevant: false,
@@ -225,11 +225,25 @@ const specialEditions: SpecialEdition[] = [
     id: 'na-1996-m-edition',
     name: '1996 M Edition',
     year: 1996,
-    exteriorColor: 'Starlight Mica Blue',
+    exteriorColor: 'Starlight Blue Mica',
     interior: 'Tan leather',
-    unique: ['Starlight Mica Blue paint', 'Enkei wheels', 'Tan leather'],
+    unique: ['Starlight Blue Mica paint', 'Enkei wheels', 'Tan leather'],
     productionCount: { value: 2968, confidence: 'confirmed' },
     collectible: 'medium',
+  },
+  {
+    id: 'na-1997-m-edition',
+    name: '1997 M Edition',
+    year: 1997,
+    exteriorColor: 'Marina Green Mica',
+    interior: 'Tan leather',
+    unique: [
+      'Marina Green Mica paint — the last of the NA M Edition colours',
+      'Tan leather interior',
+      'Polished alloy wheels',
+      'Full equipment',
+    ],
+    collectible: 'high',
   },
   {
     id: 'na-1997-sto',
@@ -256,7 +270,19 @@ const colors: PaintColor[] = [
     paintCode: null,
     swatchHex: swatch('#f2f2ef'),
     finish: 'solid',
-    yearsOffered: [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997],
+    yearsOffered: [1990, 1991, 1992, 1993, 1995],
+    rarityNote:
+      'Replaced by the plain White for 1994, then offered alongside it for 1995 only. Earlier ' +
+      'revisions of this dataset merged the two into one 1990–1997 entry; Miata.net colour lists ' +
+      'and period brochures separate them.',
+  },
+  {
+    name: 'White',
+    paintCode: null,
+    swatchHex: swatch('#eff0ec'),
+    finish: 'solid',
+    yearsOffered: [1994, 1995, 1996, 1997],
+    rarityNote: 'The 1994 replacement for Crystal White, which returned alongside it in 1995.',
   },
   {
     name: 'Mariner Blue',
@@ -271,8 +297,8 @@ const colors: PaintColor[] = [
     paintCode: null,
     swatchHex: swatch('#b9bdc0'),
     finish: 'metallic',
-    yearsOffered: [1990, 1991, 1992, 1993],
-    rarityNote: 'Added mid-year in 1990.',
+    yearsOffered: [1990, 1991, 1992],
+    rarityNote: 'Added mid-year in 1990. Dropped after 1992; 1993 lists no silver.',
   },
   {
     name: 'British Racing Green',
@@ -314,7 +340,10 @@ const colors: PaintColor[] = [
     finish: 'mica',
     yearsOffered: [1994],
     oneYearOnly: true,
-    rarityNote: '1994 M Edition only.',
+    rarityNote:
+      '1994 M Edition only. A Miata.net colour list gives this as running 1994–1997; the US ' +
+      'model-year guide lists it under 1994 alone, as the M Edition colour, which is the reading ' +
+      'taken here.',
   },
   {
     name: 'Merlot Mica',
@@ -326,7 +355,7 @@ const colors: PaintColor[] = [
     rarityNote: 'Exclusive to the 1995 M Edition; 3,500 built.',
   },
   {
-    name: 'Starlight Mica Blue',
+    name: 'Starlight Blue Mica',
     paintCode: null,
     swatchHex: swatch('#1c2b44'),
     finish: 'mica',
@@ -342,6 +371,15 @@ const colors: PaintColor[] = [
     yearsOffered: [1997],
     oneYearOnly: true,
     rarityNote: '1997 STO only; 1,500 built.',
+  },
+  {
+    name: 'Marina Green Mica',
+    paintCode: null,
+    swatchHex: swatch('#4a5f4a'),
+    finish: 'mica',
+    yearsOffered: [1997],
+    oneYearOnly: true,
+    rarityNote: 'The 1997 M Edition colour, the last of the NA M Edition paints.',
   },
 ];
 
@@ -449,7 +487,7 @@ const modelYears: ModelYear[] = [
       '4AT and ABS added to the options list.',
       'First Special Edition: British Racing Green.',
     ],
-    trimIds: ['base', 'package-a', 'package-b', 'package-c'],
+    trimIds: ['base', 'package-a', 'package-b'],
     specialEditionIds: ['na-1991-brg'],
     colorNames: [
       'Classic Red',
@@ -500,13 +538,7 @@ const modelYears: ModelYear[] = [
     ],
     trimIds: ['base', 'package-a', 'package-b', 'package-c'],
     specialEditionIds: ['na-1993-le'],
-    colorNames: [
-      'Classic Red',
-      'Crystal White',
-      'Mariner Blue',
-      'Silver Stone Metallic',
-      'Brilliant Black',
-    ],
+    colorNames: ['Classic Red', 'Crystal White', 'Mariner Blue', 'Brilliant Black'],
     bodyStyles: ['Soft top', 'Optional removable hardtop'],
     yearQuirks: ['Last 1.6L year and the last year of the 4.30:1 final drive.'],
     buyRating: 3,
@@ -549,7 +581,7 @@ const modelYears: ModelYear[] = [
     specialEditionIds: ['na-1994-m-edition'],
     colorNames: [
       'Classic Red',
-      'Crystal White',
+      'White',
       'Brilliant Black',
       'Laguna Blue Metallic',
       'Montego Blue Mica',
@@ -594,7 +626,14 @@ const modelYears: ModelYear[] = [
     },
     trimIds: ['base', 'pep', 'leather-package', 'r-package', 'm-edition'],
     specialEditionIds: ['na-1995-m-edition'],
-    colorNames: ['Classic Red', 'Crystal White', 'Brilliant Black', 'Laguna Blue Metallic', 'Merlot Mica'],
+    colorNames: [
+      'Classic Red',
+      'White',
+      'Crystal White',
+      'Brilliant Black',
+      'Laguna Blue Metallic',
+      'Merlot Mica',
+    ],
     bodyStyles: ['Soft top', 'Optional removable hardtop'],
     yearQuirks: [
       'R Package production drops to 465.',
@@ -610,7 +649,7 @@ const modelYears: ModelYear[] = [
     whatChanged: [
       'OBD-II diagnostics.',
       '1.8L output rises to 133 hp.',
-      'M Edition in Starlight Mica Blue.',
+      'M Edition in Starlight Blue Mica.',
     ],
     engineOverride: {
       code: 'BP-ZE (OBD-II)',
@@ -634,9 +673,14 @@ const modelYears: ModelYear[] = [
       frontBrakes: '10.0 in ventilated discs',
       rearBrakes: '9.9 in solid discs',
     },
-    trimIds: ['base', 'pep', 'leather-package', 'r-package', 'm-edition'],
+    trimIds: ['base', 'power-steering-package', 'pep', 'leather-package', 'r-package', 'm-edition'],
     specialEditionIds: ['na-1996-m-edition'],
-    colorNames: ['Classic Red', 'Crystal White', 'Brilliant Black', 'Starlight Mica Blue'],
+    colorNames: [
+      'Classic Red',
+      'White',
+      'Brilliant Black',
+      'Starlight Blue Mica',
+    ],
     bodyStyles: ['Soft top', 'Optional removable hardtop'],
     yearQuirks: ['Only 111 R Packages built. Bring a cheap OBD-II reader to the inspection.'],
     buyRating: 5,
@@ -672,9 +716,24 @@ const modelYears: ModelYear[] = [
       frontBrakes: '10.0 in ventilated discs',
       rearBrakes: '9.9 in solid discs',
     },
-    trimIds: ['base', 'power-steering-package', 'touring', 'pep', 'leather-package', 'r-package', 'sto'],
-    specialEditionIds: ['na-1997-sto'],
-    colorNames: ['Classic Red', 'Crystal White', 'Brilliant Black', 'Twilight Blue Mica'],
+    trimIds: [
+      'base',
+      'power-steering-package',
+      'touring',
+      'pep',
+      'leather-package',
+      'r-package',
+      'm-edition',
+      'sto',
+    ],
+    specialEditionIds: ['na-1997-m-edition', 'na-1997-sto'],
+    colorNames: [
+      'Classic Red',
+      'White',
+      'Brilliant Black',
+      'Twilight Blue Mica',
+      'Marina Green Mica',
+    ],
     bodyStyles: ['Soft top', 'Optional removable hardtop'],
     yearQuirks: [
       'Only 47 R Packages built for 1997 — the lowest-production package in Mazda history. Treat any claimed 1997 R Package with suspicion until the VIN checks out.',
@@ -748,5 +807,5 @@ export const NA: Generation = {
     'Built at Ujina Plant No. 1, Hiroshima.',
     'Designers: Tom Matano, Shunji Tanaka, C. Mark Jordan and Masao Yagi; the project was instigated by Bob Hall.',
   ],
-  accent: { light: '#B4241C', dark: '#F0736A', colorName: 'Classic Red' },
+  accent: { light: '#a82a1e', dark: '#F0736A', colorName: 'Classic Red' },
 };

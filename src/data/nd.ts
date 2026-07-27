@@ -732,5 +732,5 @@ export const ND: Generation = {
     'First car to win both 2016 World Car of the Year and World Car Design of the Year; also 2015 Japan Car of the Year.',
     'In 2024 the Miata made Consumer Reports\' list of the 10 most reliable cars; CR calls the 2024 MX-5 much more reliable than the average new car, and iSeeCars ranks it Mazda\'s most reliable model.',
   ],
-  accent: { light: '#C1521D', dark: '#F5945C', colorName: 'Racing Orange' },
+  accent: { light: '#bf5420', dark: '#F5945C', colorName: 'Racing Orange' },
 };

@@ -1,29 +1,33 @@
 .group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .groupHead {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .severityTag {
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   padding: 0.2rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
-.walkAway { background: var(--walk-away); color: #fff; }
-.negotiate { background: var(--negotiate); color: #fff; }
-.note { background: var(--note-c); color: #fff; }
+.walkAway { background: var(--walk-away); color: var(--on-fill); }
+.negotiate { background: var(--negotiate); color: var(--on-fill); }
+.note { background: var(--note-c); color: var(--on-fill); }
 
 .count {
-  font-size: 0.8125rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--ink-faint);
   font-weight: 600;
 }
@@ -32,19 +36,20 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
   overflow: hidden;
 }
 
 .item + .item {
-  border-top: 1px solid var(--line);
+  border-top: var(--rule) solid var(--line);
 }
 
-.itemWalkAway { border-left: 4px solid var(--walk-away); }
-.itemNegotiate { border-left: 4px solid var(--negotiate); }
-.itemNote { border-left: 4px solid var(--note-c); }
+.itemWalkAway { border-left: var(--rule-heavy) solid var(--walk-away); }
+.itemNegotiate { border-left: var(--rule-heavy) solid var(--negotiate); }
+.itemNote { border-left: var(--rule-heavy) solid var(--note-c); }
 
 /* Collapsed to title; howToCheck on expand. §4.3.7 */
 .summary {
@@ -55,7 +60,7 @@
   padding: 0.6rem 0.75rem;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   list-style: none;
 }
 
@@ -75,20 +80,21 @@ details[open] .caret {
 
 .area {
   flex: 0 0 auto;
-  font-size: 0.625rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
   text-transform: uppercase;
   color: var(--ink-faint);
-  border: 1px solid var(--line-strong);
-  border-radius: 3px;
+  border: var(--rule) solid var(--line-strong);
+  border-radius: var(--radius-sm);
   padding: 0.1rem 0.3rem;
 }
 
 .how {
   margin: 0;
   padding: 0 0.75rem 0.75rem 1.9rem;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -96,8 +102,10 @@ details[open] .caret {
 .yearScope {
   display: block;
   margin-top: 0.35rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
   color: var(--ink-faint);
 }
 
@@ -123,8 +131,8 @@ details[open] .caret {
 }
 
 .checkTitle {
-  font-weight: 700;
-  font-size: 0.9375rem;
+  font-weight: 600;
+  font-size: var(--t-small);
   display: block;
   margin-bottom: 0.2rem;
 }
@@ -135,21 +143,24 @@ details[open] .caret {
 }
 
 .checkHow {
-  font-size: 0.875rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
   line-height: 1.45;
   margin: 0;
 }
 
-/* One page, no nav, black on white. §4.4 */
+/*
+ * One page, no nav, black on white. §4.4
+ * Colour is handled by the token repoint in global.css; only the things tokens cannot
+ * express belong here — the filled severity tags, which would burn toner.
+ */
 @media print {
-  .list {
-    border-color: #000;
-    break-inside: avoid;
-  }
-  .item + .item { border-top-color: #000; }
-  .severityTag { background: none !important; color: #000 !important; border: 1px solid #000; }
-  .checkbox { accent-color: #000; }
-  .how, .checkHow, .count, .area { color: #000; }
+  .list { break-inside: avoid; }
   .group { break-inside: avoid; }
+  .severityTag {
+    background: none !important;
+    color: var(--ink) !important;
+    border: var(--rule) solid var(--ink);
+  }
+  .checkbox { accent-color: var(--ink); }
 }

@@ -1,5 +1,5 @@
 .title {
-  font-size: 1.5rem;
+  font-size: var(--t-h1);
   margin: 0.5rem 0 1rem;
 }
 
@@ -13,7 +13,8 @@
   display: grid;
   grid-template-columns: 4rem 5rem 1fr;
   gap: 0.4rem;
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.5rem 0.6rem 0.6rem;
@@ -21,9 +22,10 @@
 }
 
 .legend {
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--ink-faint);
   padding: 0 0.25rem;
@@ -36,10 +38,12 @@
   width: 100%;
   min-width: 0;
   padding: 0 0.5rem;
-  font: inherit;
+  font-family: var(--font-display);
+  font-size: var(--t-small);
   font-weight: 600;
+  letter-spacing: var(--track-wide);
   background: var(--surface);
-  border: 1px solid var(--line-strong);
+  border: var(--rule) solid var(--line-strong);
   border-radius: var(--radius);
   text-overflow: ellipsis;
 }
@@ -58,8 +62,8 @@
   align-items: center;
   gap: 0.45rem;
   min-height: var(--tap);
-  font-weight: 700;
-  font-size: 0.9375rem;
+  font-weight: 600;
+  font-size: var(--t-small);
   cursor: pointer;
 }
 
@@ -70,7 +74,11 @@
 }
 
 .diffCount {
-  font-size: 0.8125rem;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: var(--t-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--ink-faint);
   font-weight: 600;
 }
@@ -80,21 +88,34 @@
 }
 
 .group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .groupTitle {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 0.4rem;
+  color: var(--on-fill);
+  background: var(--accent);
+  padding: 0.35rem 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+@media print {
+  .groupTitle {
+    background: none;
+    color: var(--ink);
+    padding-left: 0;
+    border-bottom: var(--rule-strong) solid var(--ink);
+  }
 }
 
 .table {
   margin: 0;
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
   overflow: hidden;
@@ -105,11 +126,11 @@
   display: grid;
   gap: 0.15rem;
   padding: 0.55rem 0.75rem;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
 }
 
 .row + .row {
-  border-top: 1px solid var(--line);
+  border-top: var(--rule) solid var(--line);
 }
 
 .rowDiffers {
@@ -117,9 +138,10 @@
 }
 
 .rowLabel {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
   text-transform: uppercase;
   color: var(--ink-faint);
 }
@@ -127,6 +149,8 @@
 .cellA,
 .cellB {
   margin: 0;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
   font-weight: 600;
   display: flex;
   gap: 0.4rem;
@@ -136,16 +160,18 @@
 
 .cellTag {
   flex: 0 0 auto;
-  font-size: 0.625rem;
-  font-weight: 800;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
   color: var(--ink-faint);
-  border: 1px solid var(--line-strong);
-  border-radius: 3px;
+  border: var(--rule) solid var(--line-strong);
+  border-radius: var(--radius-sm);
   padding: 0 0.25rem;
 }
 
 .empty {
-  font-weight: 600;
+  font-weight: 400;
+  color: var(--ink-faint);
 }
 
 /* Desktop: real side-by-side columns with a shared header row. */
@@ -159,7 +185,11 @@
     grid-template-columns: 9rem 1fr 1fr;
     gap: 0.5rem;
     padding: 0 0.75rem 0.4rem;
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-size: var(--t-label);
+    font-weight: 600;
+    letter-spacing: var(--track-caps);
+    text-transform: uppercase;
   }
 
   .headA {

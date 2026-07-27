@@ -1,16 +1,30 @@
-/* Shared block primitives for the model-year detail view (§4.3) and the overview pages. */
+/*
+ * Shared block primitives for the model-year detail view (§4.3) and the overview pages.
+ *
+ * Brochure treatment: panels are bounded by rules rather than by rounded corners and
+ * shadows, section titles are wide-tracked caps sitting on a hairline, and spec rows are
+ * leader-dotted the way a printed specification table is.
+ */
 
 .section {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.75rem;
 }
 
+/*
+ * Reversed-out section header: white caps on a solid accent bar. Brochures of the era
+ * colour-blocked their section dividers rather than relying on a rule, and this is the
+ * device that most separates the guide from ordinary card UI.
+ */
 .sectionTitle {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 0.5rem;
+  color: var(--on-fill);
+  background: var(--accent);
+  padding: 0.35rem 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
 /* --- Header --- */
@@ -20,15 +34,17 @@
 }
 
 .eyebrow {
-  font-size: 0.8125rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
   color: var(--accent);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
 }
 
 .title {
-  font-size: 1.75rem;
-  margin: 0.1rem 0 0.6rem;
+  font-size: var(--t-display);
+  margin: 0.25rem 0 0.7rem;
 }
 
 .chipRow {
@@ -41,11 +57,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.25rem 0.55rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  border: var(--rule) solid var(--line-strong);
   background: var(--surface);
   color: var(--ink);
 }
@@ -65,22 +84,23 @@
 /* --- What changed: the single most useful block on the site, §4.3.2 --- */
 
 .whatChanged {
-  border: 2px solid var(--accent);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-heavy) solid var(--accent);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .whatChangedTitle {
-  font-size: 1.0625rem;
+  font-size: var(--t-h2);
   margin-bottom: 0.5rem;
 }
 
 .whatChangedList {
   margin: 0;
   padding-left: 1.1rem;
-  font-size: 1rem;
+  font-size: var(--t-body);
   line-height: 1.45;
 }
 
@@ -89,10 +109,10 @@
 }
 
 .buyLine {
-  margin: 0.75rem 0 0;
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.9375rem;
+  margin: 0.8rem 0 0;
+  padding-top: 0.65rem;
+  border-top: var(--rule) solid var(--line);
+  font-size: var(--t-small);
   display: flex;
   gap: 0.5rem;
   align-items: baseline;
@@ -100,53 +120,67 @@
 }
 
 .stars {
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 600;
   color: var(--accent);
-  letter-spacing: 0.08em;
+  letter-spacing: var(--track-wide);
   white-space: nowrap;
 }
 
 /* --- Spec table --- */
 
 .specGroup {
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
   overflow: hidden;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .specGroupTitle {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  padding: 0.45rem 0.75rem;
-  background: var(--accent-wash);
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--line);
+  padding: 0.45rem 0.85rem;
+  background: var(--accent);
+  color: var(--on-fill);
 }
 
+/*
+ * A printed specification table: ruled cells, label column divided from the value column
+ * by a vertical rule. Grid rather than flex so markerNote can span both columns when the
+ * override marker is opened.
+ */
 .specRow {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.9375rem;
+  grid-template-columns: 8rem 1fr;
   align-items: baseline;
+  font-size: var(--t-small);
 }
 
 .specRow + .specRow {
-  border-top: 1px solid var(--line);
+  border-top: var(--rule) solid var(--line);
 }
 
 .specKey {
-  color: var(--ink-faint);
+  padding: 0.5rem 0.6rem;
+  border-right: var(--rule) solid var(--line);
+  font-family: var(--font-display);
+  font-size: var(--t-label);
   font-weight: 600;
-  font-size: 0.8125rem;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  align-self: stretch;
 }
 
 .specValue {
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
   font-weight: 600;
   min-width: 0;
   overflow-wrap: anywhere;
@@ -161,48 +195,53 @@
   height: 1.35rem;
   margin-left: 0.35rem;
   padding: 0 0.3rem;
-  font-size: 0.6875rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
   line-height: 1;
   vertical-align: 1px;
   color: var(--accent);
   background: var(--accent-wash);
-  border: 1px solid var(--accent);
-  border-radius: 4px;
+  border: var(--rule) solid var(--accent);
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
 .markerNote {
   grid-column: 1 / -1;
-  margin-top: 0.35rem;
-  padding: 0.4rem 0.55rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
+  /* It is a <p>, so the global bottom margin has to be cleared inside the row. */
+  margin: 0;
+  padding: 0.5rem 0.85rem;
+  border-top: var(--rule) solid var(--line);
+  font-size: var(--t-small);
+  font-weight: 400;
+  text-align: left;
   color: var(--ink-soft);
   background: var(--accent-wash);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .specNote {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8438rem;
+  padding: 0.55rem 0.85rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
   background: var(--paper);
-  border-top: 1px solid var(--line);
+  border-top: var(--rule) solid var(--line);
 }
 
 /* --- Differential callout: its own bordered block, not a table row. §4.3.4 --- */
 
 .diff {
-  border: 2px solid var(--walk-away);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-heavy) solid var(--walk-away);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .diffTitle {
-  font-size: 1.0625rem;
+  font-size: var(--t-h2);
   color: var(--walk-away);
   margin-bottom: 0.5rem;
 }
@@ -210,23 +249,25 @@
 .diffGrid {
   display: grid;
   gap: 0.4rem;
-  font-size: 0.9375rem;
-  margin-bottom: 0.65rem;
+  font-size: var(--t-small);
+  margin-bottom: 0.7rem;
 }
 
 .diffLabel {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
 .diffVerify {
-  padding: 0.6rem 0.7rem;
+  padding: 0.65rem 0.75rem;
   background: var(--walk-away-wash);
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-left: var(--rule-strong) solid var(--walk-away);
+  border-radius: var(--radius-sm);
+  font-size: var(--t-small);
   line-height: 1.45;
 }
 
@@ -240,15 +281,15 @@
 
 .cards {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.75rem;
 }
 
 .card {
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
+  border: var(--rule) solid var(--line);
+  border-left: var(--rule-heavy) solid var(--accent);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.7rem 0.85rem;
+  padding: 0.75rem 0.9rem;
 }
 
 .cardHead {
@@ -261,17 +302,20 @@
 }
 
 .cardTitle {
-  font-size: 1rem;
+  font-size: var(--t-body);
 }
 
 .cardMeta {
-  font-size: 0.8125rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
 .cardList {
-  font-size: 0.875rem;
+  font-size: var(--t-small);
   margin: 0;
   padding-left: 1.05rem;
   color: var(--ink-soft);
@@ -280,18 +324,19 @@
 .footnote {
   display: block;
   margin-top: 0.45rem;
-  font-size: 0.8125rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
   font-style: italic;
 }
 
 .collectible {
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
-  padding: 0.15rem 0.4rem;
-  border-radius: 3px;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
@@ -321,15 +366,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.4rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: capitalize;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: var(--t-small);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
 }
 
 .heroHint {
-  font-size: 0.75rem;
+  font-family: var(--font);
+  font-size: var(--t-label);
   font-weight: 400;
+  letter-spacing: 0;
   text-transform: none;
   color: var(--ink-faint);
 }
@@ -345,14 +394,14 @@
 .colorChip {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
   /* Chips are tap targets now, so pad to the 44px rhythm rather than the old 0.3rem. */
   padding: 0.45rem 0.7rem;
   min-height: 2.25rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
+  font-size: var(--t-small);
+  font-weight: 500;
+  border: var(--rule) solid var(--line-strong);
+  border-radius: var(--radius-pill);
   background: var(--surface);
   text-align: left;
   color: var(--ink);
@@ -371,25 +420,26 @@
 
 /*
  * An approximate colour, so it is drawn as a small chip with a hard border rather than
- * anything that looks like a calibrated sample.
+ * anything that looks like a calibrated sample. Square, like a printed colour chart —
+ * revert to border-radius: 50% for the old dot.
  */
 .swatch {
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 50%;
-  border: 1px solid var(--line-strong);
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0;
+  border: var(--rule) solid var(--line-strong);
   flex: none;
 }
 
 .rareStar {
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: var(--t-label);
+  font-weight: 600;
   color: var(--negotiate);
 }
 
 .colorNote {
   margin-top: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
 }
 
@@ -401,7 +451,7 @@
   gap: 0.5rem;
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
 }
 
 .yearNavLink {
@@ -409,10 +459,14 @@
   align-items: center;
   min-height: var(--tap);
   padding: 0.5rem 0.9rem;
-  border: 1px solid var(--line-strong);
+  border: var(--rule) solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--surface);
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: var(--t-small);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
 }
@@ -423,4 +477,16 @@
 
 @media print {
   .yearNav { display: none; }
+
+  /*
+   * Print repoints --accent and --on-fill both to black, so a reversed bar would come out
+   * black on black. Strip the fill and fall back to a ruled heading.
+   */
+  .sectionTitle,
+  .specGroupTitle {
+    background: none;
+    color: var(--ink);
+    padding-left: 0;
+    border-bottom: var(--rule-strong) solid var(--ink);
+  }
 }

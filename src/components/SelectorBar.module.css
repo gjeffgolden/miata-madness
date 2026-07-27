@@ -1,10 +1,14 @@
+/*
+ * The sticky selector reads as a brochure spec-strip: paper ground, a rule top and bottom,
+ * and wide-tracked micro caps over each field.
+ */
 .bar {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--surface);
-  border-bottom: 2px solid var(--accent);
-  padding: 0.5rem 0.75rem;
+  background: var(--paper);
+  border-bottom: var(--rule-strong) solid var(--ink);
+  padding: 0.55rem 0.75rem 0.6rem;
 }
 
 .inner {
@@ -23,12 +27,13 @@
 }
 
 .label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 
 /*
@@ -41,15 +46,21 @@
   width: 100%;
   min-height: var(--tap);
   padding: 0 1.75rem 0 0.6rem;
-  font: inherit;
+  font-family: var(--font-display);
+  font-size: var(--t-small);
   font-weight: 600;
+  letter-spacing: var(--track-wide);
   color: var(--ink);
   background-color: var(--surface);
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%235c636e' stroke-width='1.75' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  /*
+   * The chevron colour is baked into the data URI — custom properties cannot reach inside
+   * one, so %236b6355 has to be hand-kept in step with --ink-faint.
+   */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%236b6355' stroke-width='1.75' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.55rem center;
   background-size: 0.7rem;
-  border: 1px solid var(--line-strong);
+  border: var(--rule) solid var(--line-strong);
   border-radius: var(--radius);
   text-overflow: ellipsis;
 }
@@ -63,11 +74,12 @@
 .notice {
   max-width: 46rem;
   margin: 0.5rem auto 0;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  padding: 0.45rem 0.6rem;
+  font-size: var(--t-small);
+  font-weight: 500;
   color: var(--negotiate);
   background: var(--negotiate-wash);
+  border-left: var(--rule-strong) solid var(--negotiate);
   border-radius: var(--radius);
 }
 

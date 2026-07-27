@@ -1,3 +1,11 @@
+/// <reference types="node" />
+// The theme guard below reads global.css off disk. A ?raw import cannot do it: vitest stubs
+// CSS to an empty string unless css:true, which would mean processing every stylesheet just
+// to run the data assertions. The reference above scopes node's types to this file rather
+// than adding "node" to tsconfig.app.json, which would put process/Buffer in reach of the
+// browser code too.
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { GENERATIONS } from './index';
 import { resolveSpec } from '../lib/resolveSpec';
@@ -274,5 +282,43 @@ describe('cross-generation', () => {
   it('falls back to the first available trim when the requested trim did not exist', () => {
     const spec = resolveSpec('na', 1996, 'package-a')!;
     expect(spec.trim?.id).toBe('base');
+  });
+});
+
+/**
+ * The generation accent exists in two layers that cannot import from each other: the
+ * [data-gen] blocks in global.css theme the whole UI, and Generation.accent.light tints the
+ * car profile art (Landing, GenerationOverview, ModelYearDetail). CSS custom properties are
+ * static, so there is no way to make one derive from the other — the values are duplicated
+ * by necessity. This is the guard that keeps the duplication honest.
+ *
+ * If this fails, the two layers have drifted. Fix whichever one is wrong; do not delete
+ * the assertion.
+ */
+describe('theme', () => {
+  const globalCss = readFileSync(
+    fileURLToPath(new URL('../styles/global.css', import.meta.url)),
+    'utf8',
+  );
+
+  it.each(GENERATIONS.map((g) => [g.id, g] as const))(
+    '%s accent matches the [data-gen] block in global.css',
+    (id, gen) => {
+      const match = globalCss.match(
+        new RegExp(`\\[data-gen='${id}'\\][^}]*--accent:\\s*(#[0-9a-fA-F]{6})`),
+      );
+      expect(match, `global.css has no --accent for [data-gen='${id}']`).not.toBeNull();
+      expect(
+        match![1].toLowerCase(),
+        `${id}.accent.light is ${gen.accent.light} but global.css says ${match![1]}`,
+      ).toBe(gen.accent.light.toLowerCase());
+    },
+  );
+
+  it('every accent is a 6-digit hex in both layers', () => {
+    for (const gen of GENERATIONS) {
+      expect(gen.accent.light, `${gen.id}.accent.light`).toMatch(/^#[0-9a-fA-F]{6}$/);
+      expect(gen.accent.dark, `${gen.id}.accent.dark`).toMatch(/^#[0-9a-fA-F]{6}$/);
+    }
   });
 });

@@ -1,0 +1,6 @@
+.title {
+  font-size: var(--t-h1);
+  margin: 0.5rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: var(--rule-strong) solid var(--ink);
+}

@@ -1,17 +1,33 @@
 .title {
-  font-size: 1.5rem;
+  font-size: var(--t-display);
   margin: 0.5rem 0 0.5rem;
 }
 
 .lede {
-  font-size: 1.0625rem;
+  font-size: var(--t-h2);
   color: var(--ink-soft);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .h2 {
-  font-size: 1.0625rem;
-  margin-bottom: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--on-fill);
+  background: var(--accent);
+  padding: 0.35rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+@media print {
+  .h2 {
+    background: none;
+    color: var(--ink);
+    padding-left: 0;
+    border-bottom: var(--rule-strong) solid var(--ink);
+  }
 }
 
 .disputedList {
@@ -21,8 +37,8 @@
 }
 
 .disputedRow {
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--negotiate);
+  border: var(--rule) solid var(--line);
+  border-left: var(--rule-heavy) solid var(--negotiate);
   border-radius: var(--radius);
   background: var(--surface);
   padding: 0.6rem 0.75rem;
@@ -37,23 +53,26 @@
 }
 
 .tag {
-  font-size: 0.625rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   padding: 0.1rem 0.35rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   background: var(--negotiate-wash);
   color: var(--negotiate);
 }
 
 .value {
   margin-left: auto;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 600;
 }
 
 .disputedNote {
-  font-size: 0.875rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
   margin: 0;
 }
@@ -71,22 +90,25 @@
   grid-template-columns: 6.5rem 1fr;
   gap: 0.6rem;
   padding-left: 0.7rem;
-  border-left: 3px solid var(--line-strong);
+  border-left: var(--rule-strong) solid var(--line-strong);
 }
 
 .date {
-  font-size: 0.8125rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
   color: var(--accent);
 }
 
 .milestoneBody {
   display: grid;
   gap: 0.1rem;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
 }
 
 .detail {
-  font-size: 0.8438rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
 }

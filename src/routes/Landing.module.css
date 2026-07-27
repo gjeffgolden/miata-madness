@@ -1,25 +1,26 @@
 .lede {
-  font-size: 1.0625rem;
+  font-size: var(--t-h2);
   line-height: 1.45;
   color: var(--ink-soft);
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.5rem 0 1.75rem;
 }
 
 .h1 {
-  font-size: 1.75rem;
-  margin-top: 0.75rem;
+  font-size: var(--t-display);
+  margin-top: 0.85rem;
 }
 
 .strategy {
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 1rem;
-  margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.75rem;
 }
 
 .strategyTitle {
-  font-size: 1.0625rem;
+  font-size: var(--t-h2);
   margin-bottom: 0.6rem;
 }
 
@@ -35,16 +36,19 @@
   display: grid;
   gap: 0.15rem;
   padding-left: 0.7rem;
-  border-left: 3px solid var(--line-strong);
+  border-left: var(--rule-strong) solid var(--line-strong);
 }
 
 .intentGoal {
-  font-weight: 700;
-  font-size: 0.9375rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-small);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
 }
 
 .intentPick {
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
 }
 
@@ -52,7 +56,7 @@
 
 .picker {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.75rem;
   margin-bottom: 1.75rem;
 }
 
@@ -60,11 +64,11 @@
   display: block;
   text-decoration: none;
   color: var(--ink);
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
   border-left: 6px solid var(--card-accent);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.8rem 0.95rem;
+  padding: 0.85rem 0.95rem;
   min-height: var(--tap);
 }
 
@@ -84,66 +88,75 @@
   align-items: baseline;
   gap: 0.5rem;
   flex-wrap: wrap;
+  padding-bottom: 0.35rem;
+  border-bottom: var(--rule) solid var(--line);
 }
 
 .genName {
-  font-size: 1.375rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: var(--t-h1);
+  font-weight: 600;
   color: var(--card-accent);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--track-caps);
 }
 
 .genYears {
-  font-weight: 700;
-  font-size: 0.9375rem;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 600;
+  font-size: var(--t-small);
 }
 
 .genPrice {
   margin-left: auto;
-  font-size: 0.8125rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: var(--t-label);
+  font-weight: 600;
   padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  border: var(--rule) solid var(--line-strong);
 }
 
 .genTagline {
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
-  margin: 0.3rem 0 0;
+  margin: 0.4rem 0 0;
 }
 
 .genSpot {
-  font-size: 0.8125rem;
+  font-size: var(--t-label);
   color: var(--ink-faint);
   margin: 0.35rem 0 0;
 }
 
 .priorities {
-  border: 1px solid var(--line);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-strong) solid var(--ink);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1rem;
   margin-bottom: 1.25rem;
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
 }
 
 .priorities h2 {
-  font-size: 1rem;
+  font-size: var(--t-body);
   margin-bottom: 0.4rem;
 }
 
 .verify {
-  border: 2px solid var(--walk-away);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-heavy) solid var(--walk-away);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.85rem 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.9375rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.75rem;
+  font-size: var(--t-small);
 }
 
 .verify h2 {
-  font-size: 1rem;
+  font-size: var(--t-body);
   color: var(--walk-away);
   margin-bottom: 0.4rem;
 }
@@ -158,21 +171,22 @@
 }
 
 .rumor {
-  font-size: 0.875rem;
+  font-size: var(--t-small);
   color: var(--ink-soft);
-  border-left: 3px solid var(--line-strong);
+  border-left: var(--rule-strong) solid var(--line-strong);
   padding-left: 0.7rem;
   margin-bottom: 1.5rem;
 }
 
 .rumorTag {
   display: inline-block;
-  font-size: 0.625rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
+  font-family: var(--font-display);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
   padding: 0.1rem 0.35rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 3px;
+  border: var(--rule) solid var(--line-strong);
+  border-radius: var(--radius-sm);
   margin-right: 0.35rem;
 }

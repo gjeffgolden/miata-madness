@@ -1,6 +1,10 @@
 /*
  * The profile is tinted through --paint. Callers set it inline; the fallback chain lets a
  * profile dropped inside a generation card pick up that card's accent for free.
+ *
+ * Every colour here except the body comes from an --art-* token in global.css, so the
+ * chrome sits on the warm ground with the rest of the guide. The body deliberately does
+ * not: --paint carries real swatch data and is never themed.
  */
 
 .svg {
@@ -14,7 +18,7 @@
   fill: var(--paint, var(--card-accent, var(--accent)));
   /*
    * The outline is not decoration. Crystal White and Marble White are real Miata colours and
-   * the car has to stay visible against --surface (#fff) when one is selected.
+   * the car has to stay visible against --surface when one is selected.
    */
   stroke: var(--line-strong);
   stroke-width: 1.4;
@@ -22,25 +26,25 @@
 }
 
 .shade {
-  fill: #000;
+  fill: var(--ink);
   opacity: 0.14;
 }
 
 .highlight {
-  fill: #fff;
+  fill: var(--surface);
   opacity: 0.2;
 }
 
 .top {
-  fill: #24272c;
+  fill: var(--art-top);
   stroke: var(--line-strong);
   stroke-width: 1.2;
   stroke-linejoin: round;
 }
 
 .glass {
-  fill: #93a6b5;
-  stroke: #454b53;
+  fill: var(--art-glass);
+  stroke: var(--art-glass-line);
   stroke-width: 1.2;
   stroke-linejoin: round;
 }
@@ -50,42 +54,42 @@
  * these have to work across every colour in the dataset.
  */
 .lamp {
-  fill: #dfe4e9;
-  stroke: #4a5058;
+  fill: var(--art-lamp);
+  stroke: var(--art-lamp-line);
   stroke-width: 1.1;
   stroke-linejoin: round;
 }
 
 .panelLine {
   fill: none;
-  stroke: #000;
+  stroke: var(--ink);
   stroke-width: 1.1;
   opacity: 0.28;
   stroke-linecap: round;
 }
 
 .tire {
-  fill: #1b1d21;
+  fill: var(--art-tire);
 }
 
 .rim {
-  fill: #cfd3d8;
-  stroke: #6c727a;
+  fill: var(--art-rim);
+  stroke: var(--art-chrome);
   stroke-width: 1;
 }
 
 .spoke {
-  stroke: #6c727a;
+  stroke: var(--art-chrome);
   stroke-width: 2.4;
   stroke-linecap: round;
 }
 
 .hub {
-  fill: #6c727a;
+  fill: var(--art-chrome);
 }
 
 .shadow {
-  fill: #000;
+  fill: var(--ink);
   opacity: 0.1;
 }
 

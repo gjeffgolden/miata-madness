@@ -2,12 +2,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { GENERATIONS } from '../data';
 import { bestYear } from '../lib/resolveSpec';
 import { pathFor } from '../lib/selection';
+import s from './NotFound.module.css';
 
 export function NotFound() {
   const { pathname } = useLocation();
   return (
     <div className="page">
-      <h1 style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>No car at that address</h1>
+      <h1 className={s.title}>No car at that address</h1>
       <p>
         <code>{pathname}</code> doesn't match a generation, year and trim this guide knows about.
       </p>

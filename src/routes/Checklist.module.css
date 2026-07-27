@@ -1,14 +1,19 @@
 .head {
   margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--rule-strong) solid var(--ink);
 }
 
 .title {
-  font-size: 1.5rem;
-  margin-bottom: 0.2rem;
+  font-size: var(--t-h1);
+  margin-bottom: 0.25rem;
 }
 
 .sub {
-  font-size: 0.875rem;
+  font-family: var(--font-display);
+  font-size: var(--t-label);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   color: var(--ink-faint);
   margin-bottom: 0.6rem;
 }
@@ -22,20 +27,28 @@
 }
 
 .progress {
-  font-weight: 800;
-  font-size: 0.875rem;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 600;
+  font-size: var(--t-small);
+  letter-spacing: var(--track-wide);
   padding: 0.3rem 0.6rem;
   background: var(--accent-wash);
   color: var(--accent);
-  border-radius: 999px;
+  border: var(--rule) solid var(--accent);
+  border-radius: var(--radius-pill);
 }
 
 .button {
   min-height: var(--tap);
   padding: 0.4rem 0.9rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: var(--t-small);
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
   background: var(--surface);
-  border: 1px solid var(--line-strong);
+  border: var(--rule) solid var(--line-strong);
   border-radius: var(--radius);
   cursor: pointer;
 }
@@ -46,27 +59,28 @@
 }
 
 .storageNote {
-  font-size: 0.8125rem;
+  font-size: var(--t-label);
   color: var(--ink-faint);
   margin: 0;
 }
 
 .diffBox {
-  border: 2px solid var(--walk-away);
+  border: var(--rule) solid var(--line);
+  border-top: var(--rule-heavy) solid var(--walk-away);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 0.8rem 0.9rem;
+  padding: 0.85rem 0.9rem;
   margin-top: 0.5rem;
 }
 
 .diffTitle {
-  font-size: 1rem;
+  font-size: var(--t-body);
   color: var(--walk-away);
   margin-bottom: 0.3rem;
 }
 
 .diffText {
-  font-size: 0.9375rem;
+  font-size: var(--t-small);
   margin: 0;
 }
 
@@ -74,7 +88,11 @@
   margin-top: 1.5rem;
 }
 
-/* One page, no nav, black on white. §4.4 */
+/*
+ * One page, no nav, black on white. §4.4
+ * Colour comes from the token repoint in global.css; what is left here is layout — the
+ * point size the sheet is actually set in, and the things that must not print.
+ */
 @media print {
   .sheet {
     max-width: none;
@@ -83,10 +101,8 @@
   }
 
   .title { font-size: 14pt; }
-  .sub { color: #000; }
   .actions, .storageNote, .backLink { display: none; }
-  .diffBox { border-color: #000; break-inside: avoid; }
-  .diffTitle { color: #000; }
+  .diffBox { break-inside: avoid; }
 
   @page {
     margin: 12mm;
